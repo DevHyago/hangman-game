@@ -8,6 +8,16 @@
    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+
+   <section id="select-level">
+      <h3>Selecione o nível de dificuldade:</h3>
+         <select id="level" name="level">
+            <option value="easy">Fácil</option>
+            <option value="medium">Médio</option>
+            <option value="hard">Difícil</option>
+         </select>
+         <input type="submit" id="difficulty" value="Iniciar Jogo">
+   </section>
    
    <section id="game">
 
@@ -16,11 +26,7 @@
       </div>
 
       <div class="phrase">
-         <div class="letter">B</div>
-         <div class="letter">O</div>
-         <div class="letter">L</div>
-         <div class="letter">A</div>
-         <div class="letter">B</div>
+         
       </div>
 
       <div class="buttons">
@@ -52,9 +58,10 @@
          <button class="button">Z</button>
          <button class="button">Ç</button>
       </div>
-
+      <div id="tip">DICA: TIME</div>
    </section>
 
+   <script src="js/phrases.js"></script>
    <script src="js/script.js"></script>
 </body>
 </html>
