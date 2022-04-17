@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap');
+
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   transition: all .3s ease;
+}
+
+body{
+   font-family: 'Poppins', sans-serif;
+   color: #2b313a;
+}
+
+section#game{
+   width: 80vw;
+   margin: 10vh auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   background-color: yelow;
+}
+
+.hangman{
+   width: 50%;
+   height: 375px;
+}
+
+.hangman img{
+   width: 80%;
+}
+
+.phrase{
+   width: 50%;
+}
+
+.phrase .letter{
+   display: inline-block;
+   width: 5vw;
+   height: 5vw;
+   min-width: 30px;
+   min-height: 30px;
+   text-align: center;
+   line-height: 50px;
+   font-size: 20px;
+   font-weight: 5vw;
+   margin: 5px;
+   border-bottom: 2px solid #19989c;
+}
+
+.buttons{
+   width: 100%;
+   margin-top: 20px;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.button{
+   padding: 15px;
+   margin: 5px;
+   border-radius: 10px;
+   border: 0;
+   outline: 0;
+   cursor: pointer;
+   font-size: 18px;
+   background-color: #68717e;
+   color: #fff;
+}
+
+.button:hover{
+   background-color: #19989c;
+}
