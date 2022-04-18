@@ -16,4 +16,10 @@ const movie = {
    hard: ['JANGO LIVRE', 'A FERA']
 }
 
-let phrase = [team, fruit, movie];
+const serie = {
+   easy: ['LA CASA DE PAPEL', 'LUCIFER', 'SEX EDUCATION', 'THE WITCHER', 'BREAKING BAD'],
+   medium: ['THE BOYS', 'PRISION BREAK', 'VIS A VIS'],
+   hard: ['HOMELAND', 'REACHER']
+}
+
+let phrase = [team, fruit, movie, serie];

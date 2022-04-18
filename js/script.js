@@ -6,6 +6,10 @@ let tip;
 let selectedPhrase;
 let displayPhrase = document.querySelector('.phrase');
 let correctPlayCount = 0;
+let wrongMove = 0;
+let buttons = document.querySelectorAll('.button');
+let hangman = document.querySelector('#hangman');
+let divModal = document.querySelector('#end-game');
 
 
 document.querySelector("#difficulty").addEventListener('click', () => {
@@ -15,33 +19,63 @@ document.querySelector("#difficulty").addEventListener('click', () => {
    selectedPhrase = sortPhase();
    displayLetters(selectedPhrase);
    divTip.innerHTML = `DICA: ${tip}`;
-   checkIfLetter(selectedPhrase);
    console.log(selectedPhrase);
 });
 
-function checkIfLetter(str){
 
-   let divLetter = document.querySelectorAll('.letter');
-   let letters = document.querySelectorAll('.button');
+buttons.forEach((element) => {
+   element.addEventListener('click', (e) => {
+      e.preventDefault();
+      let buttonClick = element.innerHTML;
+      element.style.cursor = 'not-allowed';
+      element.disabled = true;
+      element.style.background = '#8a0f07';
+   
+      if(selectedPhrase.includes(buttonClick)){
+   
+         for(let i = 0; i < selectedPhrase.length; i++){
+            if(selectedPhrase[i] == buttonClick){
+               document.querySelectorAll('.letter')[i].innerHTML = buttonClick;
+               correctPlayCount+=1;
+               console.log(correctPlayCount);
+               if(correctPlayCount == selectedPhrase.length){
+                  createDisplayWinner();
+               }
+            } 
+         }
+   
+      }else{
+         wrongMove+=1;
+         if(wrongMove <= 6){
+            hangman.setAttribute('src', `images/${wrongMove}.png`);
+         }
+         if(wrongMove == 6){
+            createDisplayLoser();
+         }
+      }
+   });
+});   
 
-   letters.forEach(element => {
-      element.addEventListener('click', () => {
-         let lettersSelected = element.innerHTML;
 
-         str.split('').forEach((element, index) => {
-            if(lettersSelected == element){
-               divLetter[index].innerHTML = element;
-               
-               
-            
-            }
-         });
-
-      });
-   })
+function createDisplayWinner(){
+   setTimeout(() => {
+      divModal.style.background = 'rgba(9, 181, 69, 0.5)';
+      divModal.querySelector('h1').innerHTML = 'Parabéns! Você venceu!';
+      divModal.querySelector('h3').innerHTML = `A palavra é ${selectedPhrase}`;
+      divModal.style.display = 'flex';
+   }, 300);
+   divModal.querySelector('input[type="button"]').addEventListener('click', newGame);
 }
 
-
+function createDisplayLoser(){
+   setTimeout(() => {
+      divModal.style.background = 'rgba(153, 11, 25, 0.5)';
+      divModal.querySelector('h1').innerHTML = 'Infelizmente você perdeu!';
+      divModal.querySelector('h3').innerHTML = `A palavra era ${selectedPhrase}`;
+      divModal.style.display = 'flex';
+   }, 300);
+   divModal.querySelector('input[type="button"]').addEventListener('click', newGame);
+}
 
 function displayLetters(str){
    let createDiv = document.createElement('div');
@@ -69,6 +103,9 @@ function sortPhase(){
       case 2:
          tip = "FILME"
          break;
+      case 3:
+         tip = "SERIE"
+         break;
       default:
          tip = "ERROR";
    }
@@ -88,4 +125,19 @@ function exitDisplayGame(){
 
 function randomNumber(arr){
    return Math.floor(Math.random() * arr.length)
+}
+
+function newGame(){
+   correctPlayCount = 0;
+   wrongMove = 0;
+   displayPhrase.innerHTML = '';
+   buttons.forEach((element) => {
+      element.style.cursor = 'pointer';
+      element.disabled = false;
+      element.style.background = '';
+   });
+   hangman.setAttribute('src', `images/0.png`);
+   divModal.style.display = 'none';
+   exitDisplayGame();
+   
 }
