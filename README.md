@@ -4,7 +4,7 @@
 
 <h2>See screenshots of the game below:</h2>
 
-<img src="../images/initial.png">
-<img src="../images/game.png">
-<img src="../images/game2.png">
-<img src="../images/winner.png">
+![Initial](images/initial.png)
+![Game](images/game.png)
+![Game Init](images/game2.png)
+![Winner](images/winner.png)
